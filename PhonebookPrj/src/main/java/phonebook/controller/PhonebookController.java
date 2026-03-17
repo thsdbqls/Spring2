@@ -92,6 +92,8 @@ public class PhonebookController {
 	public String insert(@ModelAttribute InsertPhonebookVO ipb
 			,@RequestParam("pic") MultipartFile file
 			,RedirectAttributes ra) {
+		
+		// 필터가 없으면 한글이 깨진다
 		System.out.println(ipb);
 		System.out.println(file.getOriginalFilename());
 		
@@ -173,7 +175,7 @@ public class PhonebookController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pb", service.getPhonebook(id));
 		
-		String[] paths=request.getRequestURI().split("/");
+String[] paths=request.getRequestURI().split("/");
 		
 		String contentPage
 		=String.format("/WEB-INF/views/%s/%s.jsp",paths[1],paths[2]);
