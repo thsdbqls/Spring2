@@ -41,6 +41,13 @@
     
     // 요청한 페이지 & 현재 페이지 구하기 
     int requestPage=1;//요청한페이지 or 현재페이지 ->수동입력
+    // 전달 받은 requestPage가 있는지 여부를 확인해야 한다
+    // (index.jsp or index.jsp?requestPage=2)
+    String _requestPage=request.getParameter("requestPage");
+    if(_requestPage!=null){
+    	requestPage=Integer.parseInt(_requestPage);
+    }
+    
     out.print("현재페이지 :"+requestPage+"<br>");
     
    
@@ -58,7 +65,9 @@
 	
 	// 글 시작 번호와 글 끝 번호를 알면 무엇을 알 수 있을까? 글의 페이지 목록 List<Board>
 	List<Writing> list = new ArrayList<Writing>();
-	sql="select * from board where id >= ? and id <= ?";
+	//sql="select * from board where id >= ? and id <= ?";
+	
+	sql="select * from (select rownum as rn,* from board ) where rn>=? and rn<=?";
     ps=conn.prepareStatement(sql);
     ps.setInt(1, startnum);
     ps.setInt(2, endnum);

@@ -22,7 +22,7 @@ public class ListPage {
 	//int endnum; // sql문 때문에 필요했던 것이다
 	int startPage; 
 	int endPage;
-	boolean Pre;
-	boolean Next;
+	boolean isPre;
+	boolean isNext;
 	List<Writing> list;
 }

@@ -34,13 +34,13 @@
 </table>
 
 <!-- isPre의 값이 true와 같을때 -->
-<c:if test="${page.Pre eq true}">이전 페이지</c:if>
+<c:if test="${page.pre}">이전 페이지</c:if>
 <c:forEach var="i" begin="${page.startPage}" end="${page.endPage}">
-<button>${i}</button>
+<button><a href="index.jsp?requestPage=${i}">${i}</a></button>
 </c:forEach>
 
 <!-- isNext의 값이 true와 같을때 -->
-<c:if test="${page.Next eq true}">다음 페이지</c:if>
+<c:if test="${page.next}">다음 페이지</c:if>
 </div>
 </body>
 </html>
