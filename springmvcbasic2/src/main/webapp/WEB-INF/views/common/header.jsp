@@ -12,7 +12,7 @@
                     <li>사업안내</li>
                     <li>예약안내</li>
                     <li>갤러리</li>
-                    <li><a href="board.html">게시판</a></li>
+                    <li><a href="/board/list">게시판</a></li>
                 </ul>
                 
                 <ul class="navbar_icon">

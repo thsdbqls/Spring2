@@ -17,4 +17,11 @@ public class MemberService {
 		return userDAO.save(user)>0 ? true : false;
 		
 	}
+
+	public boolean confirmLogin(String username, String password) {
+		User user=userDAO.findByUsername(username);
+		if(user == null) return false;
+		if(!user.getPassword().equals(password)) return false;
+		return true;
+}
 }
