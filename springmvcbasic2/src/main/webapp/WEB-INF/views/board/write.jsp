@@ -25,7 +25,7 @@
             <!-- 작성자 -->
             <div class="mb-3">
                 <label for="author" class="form-label">작성자</label>
-                <input type="text" class="form-control" id="author" name="author" required>
+                <input type="text" class="form-control" id="author" name="author" value="${loginUser}" readonly>
             </div>
 
             <button type="submit" class="btn btn-primary">제출</button>

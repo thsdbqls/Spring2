@@ -1,14 +1,16 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-
+    
     <div class="container mt-5">
-        <h2 class="mb-4">게시판</h2>   
+        <h2 class="mb-4">게시판</h2>
+        <div>${pageList.totalCount}개의 글
+        (현재${pageList.currentPage}page/전체${pageList.totalPage}page)
         <button class="btn btn-primary" 
         onclick="location.href='/board/write'">글쓰기</button>
         
+        </div>
         <table class="table table-bordered table-hover">
             <thead class="table-light">
                 <tr>
@@ -20,7 +22,51 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Writing 데이터를 반복처리 -->
+                <c:forEach var="board" items="${pageList.list}">
+                <tr onclick="location.href='/board/view?id=${board.id}'">
+                    <td name="id">${board.id}</td>
+                    <td name="title">${board.title}</td>
+                    <td name="author">${board.user.username}</td>
+                    <td name="createdate">
+                    <fmt:formatDate value="${board.createdate}" pattern="yyyy년MM월dd일"/>
+                    </td>
+                    <td name="viewcnt">${board.viewcnt}</td>
+                </tr>
+                </c:forEach>
             </tbody>
         </table>
 
-       
+        <!-- 페이지 네비게이션 -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+            
+               <li id="pre" class="page-item ${pageList.pre ? '' : 'disabled'} ">
+                    <a class="page-link" href="/board/list?requestPage=${pageList.startPage-5}" tabindex="-1">이전</a>
+               </li>
+            
+             
+             <c:forEach begin="${pageList.startPage}" end="${pageList.endPage}" 
+             step="1" var="i">
+             	<c:if test="${pageList.currentPage eq i }">
+             	<li class="page-item">
+                <a class="page-link active" href="/board/list?requestPage=${i}">${i}</a>
+                </li>
+             	</c:if>
+             	
+             	<c:if test="${pageList.currentPage ne i }">
+             	<li class="page-item">
+                	<a class="page-link " href="/board/list?requestPage=${i}">${i}</a>
+                </li>
+             	</c:if>
+             </c:forEach>
+               
+             <c:if test="${pageList.next}">
+                <li class="page-item">
+                    <a class="page-link" 
+                    href="/board/list?requestPage=${pageList.startPage+5}">다음</a>
+                </li>
+             </c:if> 
+             </ul>
+        </nav>
+    </div>

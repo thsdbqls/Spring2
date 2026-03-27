@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import member.model.User;
 
 //form에서 전송되는 데이터를 받는 Board이며
 //해당객체는 화면을 표현할 때도 사용함
@@ -16,13 +15,10 @@ import member.model.User;
 @Getter
 @Setter
 @ToString
-public class Board{
-int id;
-String title;
-Date createdate;
-String content;
-String attachment;
-int viewcnt;
-String type;
-User user;
+public class BoardForm{
+	int id;
+	String title;
+	String content;
+	String attachment;
+	String author;
 }

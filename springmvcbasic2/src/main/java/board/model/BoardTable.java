@@ -1,6 +1,6 @@
 package board.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BoardTable{
+public class BoardTable {
 	private int id;
 	private String title;
 	private Date createdate;
@@ -22,4 +22,5 @@ public class BoardTable{
 	private int viewcnt;
 	private String type;
 	private int userid;
+
 }

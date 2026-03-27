@@ -1,15 +1,34 @@
 package springmvcbasic2;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import org.junit.jupiter.api.Test;
+import board.repository.BoardDAO;
+import board.repository.BoardDAOH2;
 
-class BoardTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
+public class BoardTest {
 
-	@Test
-	void test() {
-		assertEquals(1, 1+0);
-		//fail("Not yet implemented");
-	}
+    @Autowired
+    BoardDAOH2 boardDAO;
 
+
+    @Test
+    public void testConnection() throws Exception {
+        System.out.println(boardDAO.getDs());
+    }
+
+    @Test
+    public void testDAO() {
+       // System.out.println(boardDAO.findAll(0, 0));
+       // System.out.println(boardDAO.count());
+       // System.out.println(boardDAO.findAll(1, 10));
+        System.out.println(boardDAO.findById(1));
+    }
+    
 }
